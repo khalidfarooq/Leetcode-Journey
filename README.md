@@ -1,2 +1,2 @@
 # Leetcode-Journey
-Collection of LeetCode questions to ace the coding interview! - Created using [LeetHub](https://github.com/QasimWani/LeetHub).
+Purpose : To Test the useablity of [LeetHub](https://github.com/QasimWani/LeetHub).
