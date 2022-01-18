@@ -80,40 +80,42 @@ class Solution
    
     void removeLoop(Node* head)
     {
-        // unordered_map<Node *, Node *>m;
-        // Node *temp = new Node(0);
-        // m.insert({head,NULL});
+        unordered_map<Node *, int>m;
+        Node *last = NULL;
         
-        // while(head->next != NULL){
-        //     if(m.find(head->next) != m.end()){
-        //         head->next = NULL;
-        //         break;
-        //     }
-        //     m.insert(head->next, head);
-        //     head = head->next;
+        
+        while(head != NULL){
+            if(m.find(head) == m.end()){
+                m[head]++;
+                last = head;
+                head = head->next;
+            }else{
+                last->next = NULL;
+                break;
+            }
+        }
+        
+        // if(head == NULL) return;
+        // Node *slow = head, *fast = head;
+        // while(fast != NULL && fast->next != NULL){
+        //     slow = slow->next;
+        //     fast = fast->next->next;
+        //     if(slow == fast) break;
+        // }
+        // if(fast == NULL || fast->next == NULL) return;
+        
+        // // start of loop at slow
+        // slow = head;
+        // while(slow != fast){
+        //     slow = slow->next;
+        //     fast = fast->next;
         // }
         
-        if(head == NULL) return;
-        Node *slow = head, *fast = head;
-        while(fast != NULL && fast->next != NULL){
-            slow = slow->next;
-            fast = fast->next->next;
-            if(slow == fast) break;
-        }
-        if(fast == NULL || fast->next == NULL) return;
-        
-        // start of loop at slow
-        slow = head;
-        while(slow != fast){
-            slow = slow->next;
-            fast = fast->next;
-        }
-        
-        //end of loop at fast
-        while(slow != fast->next){
-            fast = fast->next;
-        }
-        fast->next = NULL;
+        // //end of loop at fast
+        // while(slow != fast->next){
+        //     fast = fast->next;
+        // }
+        // fast->next = NULL;
         
     }
 };
