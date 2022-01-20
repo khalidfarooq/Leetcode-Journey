@@ -52,39 +52,40 @@ class Solution
             head->data++;
             return head;
         }
+        
         Node *end = head;
         bool isNine = false;
-        while(end->next != NULL){
+        while(end->next != NULL) 
             end = end->next;
-        }
-        if(end->data == 9){
-            isNine = true;
-        }
-        Node *nineHead=head, *nineTail = head;
         
-        if(isNine){
-            while(nineHead != end){
-                nineHead = nineHead->next;
-                if(nineHead->data == 9){
-                    nineTail = nineHead;
-                    while(nineHead->data == 9 && nineHead != end) 
-                        nineHead = nineHead->next;
-                }
-            }
-            Node *temp = head;
-            while(temp->next != nineTail){
-                temp = temp->next;
-            }
-            temp->data++;
-            temp = temp->next;
-            while(temp!=NULL){
-                temp->data = 0;
-                temp = temp->next;
-            }
-            
-        }else{
+        if(end->data == 9) isNine = true;
+        
+        if(!isNine){
             end->data++;
+            return head;
         }
+        
+        Node *nineHead=head, *nineTail = head;
+        while(nineHead != end){
+            nineHead = nineHead->next;
+            if(nineHead->data == 9){
+                nineTail = nineHead;
+                while(nineHead->data == 9 && nineHead != end) 
+                    nineHead = nineHead->next;
+            }
+        }
+        
+        Node *temp = head;
+        while(temp->next != nineTail)
+            temp = temp->next;
+        
+        temp->data++;
+        temp = temp->next;
+        while(temp!=NULL){
+            temp->data = 0;
+            temp = temp->next;
+        }
+    
         return head;
     }
 };
