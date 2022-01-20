@@ -81,27 +81,60 @@ struct Node {
 }; */
 
 //Function to find intersection point in Y shaped Linked Lists.
+int count(Node *head){
+    int count = 0;
+    Node *temp = head;
+    while(temp != NULL){
+        ++count;
+        temp = temp->next;
+    }
+    return count;
+}
 int intersectPoint(Node* head1, Node* head2)
 {
+    int l1 = count(head1), l2 = count(head2);
+    int d = 0;
+    Node *p1, *p2;
+    if(l1>l2){
+        d = l1-l2;
+        p1 = head1;
+        p2 = head2;
+    }else{
+        d= l2-l1;
+        p1 = head2;
+        p2 = head1;
+    }
     
-        stack<Node*> s1,s2;
-        Node *temp;
-        temp = head1;
-        while(temp != NULL){
-            s1.push(temp);
-            temp = temp->next;
-        }
-        temp = head2;
-        while(temp != NULL){
-            s2.push(temp);
-            temp = temp->next;
-        }
-        while(s1.top() == s2.top()){
-            temp = s1.top();
-            s1.pop();
-            s2.pop();
-            if(s1.empty() || s2.empty()) break;
-        }
-        return temp->data;
+    while(d){
+        p1 = p1->next;
+        if(p1 == NULL) return -1;
+        --d;
+    }
+    
+    while(p1 != NULL && p2 != NULL){
+        if(p1 == p2) return p1->data;
+        p1 = p1->next;
+        p2 = p2->next;
+    }
+    return -1;
+    // stack<Node*> s1,s2;
+    // Node *temp;
+    // temp = head1;
+    // while(temp != NULL){
+    //     s1.push(temp);
+    //     temp = temp->next;
+    // }
+    // temp = head2;
+    // while(temp != NULL){
+    //     s2.push(temp);
+    //     temp = temp->next;
+    // }
+    // while(s1.top() == s2.top()){
+    //     temp = s1.top();
+    //     s1.pop();
+    //     s2.pop();
+    //     if(s1.empty() || s2.empty()) break;
+    // }
+    // return temp->data;
 }
 
