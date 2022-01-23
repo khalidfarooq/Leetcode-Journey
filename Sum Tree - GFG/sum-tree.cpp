@@ -97,7 +97,7 @@ class Solution
     public:
     bool b = true;
     int helper(Node *root){
-        if(!root) return 0;
+       if(root == NULL) return 0;
        if(root->left == NULL && root->right == NULL)
        return root->data;
         
