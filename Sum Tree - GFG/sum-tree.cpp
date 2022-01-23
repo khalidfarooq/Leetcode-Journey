@@ -98,7 +98,7 @@ class Solution
     bool b = true;
     int helper(Node *root){
         if(!root) return 0;
-       if(!root->left && !root->right)
+       if(root->left == NULL && root->right == NULL)
        return root->data;
         
         int left = helper(root->left);
